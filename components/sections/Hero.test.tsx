@@ -1,25 +1,24 @@
 import { render, screen } from "@testing-library/react";
+import { heroHeadline, heroTrustCaption } from "@/lib/content";
 import { Hero } from "./Hero";
 
 describe("Hero", () => {
   it("renders the headline, subcopy and both CTAs", () => {
     render(<Hero />);
-    expect(screen.getByRole("heading", { name: /good people\./i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "I'm an Employer →" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "I'm a Worker →" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: new RegExp(heroHeadline.highlighted) }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Hire Staff Free →" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Find a Shift — Become a Shiftee" })).toBeInTheDocument();
   });
 
-  it("renders all 5 hero stats", () => {
+  it("renders the trust-faces caption", () => {
     render(<Hero />);
-    expect(screen.getByText("2,400+")).toBeInTheDocument();
-    expect(screen.getByText("180+")).toBeInTheDocument();
-    expect(screen.getByText("<2hrs")).toBeInTheDocument();
-    expect(screen.getByText("8")).toBeInTheDocument();
-    expect(screen.getAllByText("Free").length).toBeGreaterThan(0);
+    expect(screen.getByText(heroTrustCaption)).toBeInTheDocument();
   });
 
-  it("includes the Nav", () => {
+  it("renders the live Order Book widget", () => {
     render(<Hero />);
-    expect(screen.getByRole("button", { name: "Toggle navigation menu" })).toBeInTheDocument();
+    expect(screen.getByTestId("order-book-industry-label")).toBeInTheDocument();
   });
 });

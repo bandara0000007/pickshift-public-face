@@ -2,38 +2,41 @@ import { render, screen } from "@testing-library/react";
 import Home from "./page";
 
 describe("Home page", () => {
-  it("renders every section heading in top-to-bottom order", () => {
+  it("renders every major section heading in top-to-bottom order", () => {
     render(<Home />);
 
-    const headingTexts = screen
-      .getAllByRole("heading")
-      .map((heading) => heading.textContent?.trim());
+    const headingTexts = screen.getAllByRole("heading").map((heading) => heading.textContent?.trim());
 
     const expectedOrder = [
-      "Good work starts withgood people.",
-      "Two ways to use PickShift",
-      "Built for the industries that keep Australia running",
-      "For Employers & SMBs",
-      "For Labour Hire Agencies",
-      "Simple. Transparent. Scalable.",
-      "Real results for real businesses.",
-      "Ready to PickShift?",
+      "Real people.Right fit.Every shift.",
+      "For Employers",
+      "PickShift Labour Hire",
+      "For Workers",
+      "Serving 8 industries across Australia",
+      "From posting to confirmed — in under 2 hours",
+      "Start free. Scale when you're ready.",
+      "See PickShift in action",
+      "Trusted by employers and workers across Australia",
+      "Start free today.Scale when it matters.",
     ];
 
     expectedOrder.forEach((text) => {
       expect(headingTexts).toContain(text);
     });
 
-    // Two ways to use PickShift must come before Built for the industries…
-    const twoPathsIndex = headingTexts.indexOf("Two ways to use PickShift");
-    const industriesIndex = headingTexts.indexOf(
-      "Built for the industries that keep Australia running",
-    );
-    const pricingIndex = headingTexts.indexOf("Simple. Transparent. Scalable.");
-    const testimonialsIndex = headingTexts.indexOf("Real results for real businesses.");
+    const indices = expectedOrder.map((text) => headingTexts.indexOf(text));
+    for (let i = 1; i < indices.length; i += 1) {
+      expect(indices[i]).toBeGreaterThan(indices[i - 1]!);
+    }
+  });
 
-    expect(twoPathsIndex).toBeLessThan(industriesIndex);
-    expect(industriesIndex).toBeLessThan(pricingIndex);
-    expect(pricingIndex).toBeLessThan(testimonialsIndex);
+  it("renders the nav and all its section anchors on the page", () => {
+    render(<Home />);
+    expect(document.getElementById("how-it-works")).toBeInTheDocument();
+    expect(document.getElementById("for-employers")).toBeInTheDocument();
+    expect(document.getElementById("for-agencies")).toBeInTheDocument();
+    expect(document.getElementById("find-work")).toBeInTheDocument();
+    expect(document.getElementById("pricing")).toBeInTheDocument();
+    expect(document.getElementById("book-a-demo")).toBeInTheDocument();
   });
 });

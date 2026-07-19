@@ -5,9 +5,9 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PickShift — Good work starts with good people",
+  title: "PickShift — Real people. Right fit. Every shift.",
   description:
-    "Australia's AI-powered labour marketplace and labour hire platform. Find verified local workers matched to your role, culture and credentials.",
+    "Australia's AI labour marketplace and labour hire platform — connecting verified local workers to employers with generative AI matching and built-in Fair Work compliance.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

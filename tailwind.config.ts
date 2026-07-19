@@ -16,6 +16,7 @@ const config: Config = {
         blue: "#004AAD",
         cyan: "#00C2D1",
         yellow: "#FEE202",
+        green: "#16A163",
         ink: {
           666: "#666666",
           555: "#555555",
@@ -27,6 +28,7 @@ const config: Config = {
           e4e8f0: "#E4E8F0",
           e8eaf0: "#E8EAF0",
           f5f7fb: "#F5F7FB",
+          ebebeb: "#EBEBEB",
         },
       },
       fontFamily: {
@@ -34,9 +36,9 @@ const config: Config = {
         inter: ["var(--font-inter)", "sans-serif"],
       },
       fontSize: {
-        hero: ["66px", { lineHeight: "1.06", letterSpacing: "-2.2px" }],
-        "hero-sm": ["40px", { lineHeight: "1.1", letterSpacing: "-1.2px" }],
-        "hero-md": ["52px", { lineHeight: "1.08", letterSpacing: "-1.6px" }],
+        hero: ["54px", { lineHeight: "1.08", letterSpacing: "-1.8px" }],
+        "hero-sm": ["32px", { lineHeight: "1.15", letterSpacing: "-1px" }],
+        "hero-md": ["44px", { lineHeight: "1.1", letterSpacing: "-1.4px" }],
       },
       borderRadius: {
         "18": "18px",
@@ -45,6 +47,25 @@ const config: Config = {
       },
       backdropBlur: {
         xs: "2px",
+      },
+      keyframes: {
+        fadeUp: {
+          from: { opacity: "0", transform: "translateY(18px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        floatY: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-7px)" },
+        },
+        pulseDot: {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: ".4", transform: "scale(.7)" },
+        },
+      },
+      animation: {
+        fadeUp: "fadeUp .5s ease both",
+        floatY: "floatY 4s ease-in-out infinite",
+        pulseDot: "pulseDot 1.5s ease infinite",
       },
     },
   },
